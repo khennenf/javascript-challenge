@@ -20,7 +20,7 @@ tableData.forEach(function(ufoSightings) {
 
 
     Object.entries(ufoSightings).forEach(function([key, value]) {
-        console.log(key, value);
+        row.append("td").text(value)
 });
 
 });
