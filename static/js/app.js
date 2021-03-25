@@ -7,7 +7,7 @@ console.log(getSomeCities)
 var getSomeShapes = tableData.filter(shape => shape.shape == 'circle')
 console.log(getSomeShapes)
 
-var getSomeDates = tableData.filter(shape => shape.shape == 'circle')
+var getSomeDates = tableData.filter(datetime => datetime.datetime)
 console.log(getSomeDates)
 
 var currentTime = new Date ()
@@ -36,7 +36,7 @@ tableData.forEach(function(ufoSightings) {
 });
 
 var button = d3.select('#filter-btn')
-var form = d3.select('#datetime')
+var form = d3.select('#city')
 
 button.on("click", run)
 form.on("submit", run)
@@ -45,17 +45,23 @@ form.on("submit", run)
 function run(){
     d3.event.preventDefault()
 
-    var inputElement = d3.select('#datetime');
+    var inputElement = d3.select('#city');
 
     var value = inputElement.property('value');
     
     console.log(value)
 
-    var stringDate = tableData.toString(datetime)
+    var stringDate = tableData.toString(tableData.datetime)
 
-    var filteredData = tableData.filter(datetime => stringDate == value)
+    var filteredData = tableData.filter(city => city.city == value)
 
-    console.log(stringDate)
+    console.log(filteredData)
+
+    console.log(tableData.city)
+ 
+    let sightingdate = tableData.filter(function (e) {
+        return e.datetime == 01/01/2010;
+    })
 
 }
 
