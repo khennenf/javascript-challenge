@@ -1,6 +1,18 @@
 // from data.js
 var tableData = data;
 
+var getSomeCities = tableData.filter(state => state.state === 'ca')
+console.log(getSomeCities)
+
+var getSomeShapes = tableData.filter(shape => shape.shape == 'circle')
+console.log(getSomeShapes)
+
+var getSomeDates = tableData.filter(shape => shape.shape == 'circle')
+console.log(getSomeDates)
+
+var currentTime = new Date ()
+console.log(currentTime)
+
 // YOUR CODE HERE!
 
 //Check data import
@@ -33,10 +45,19 @@ form.on("submit", run)
 function run(){
     d3.event.preventDefault()
 
-    var inputElement = d3.select('#datetime')
+    var inputElement = d3.select('#datetime');
 
-    var value = inputElement.property('value')
+    var value = inputElement.property('value');
     
     console.log(value)
 
+    var stringDate = tableData.toString(datetime)
+
+    var filteredData = tableData.filter(datetime => stringDate == value)
+
+    console.log(stringDate)
+
 }
+
+
+
