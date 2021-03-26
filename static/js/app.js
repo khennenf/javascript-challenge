@@ -1,66 +1,54 @@
 // from data.js
 var tableData = data;
 
-// var getSomeCities = tableData.filter(state => state.state === 'ca')
-// console.log(getSomeCities)
-
-// var getSomeShapes = tableData.filter(shape => shape.shape == 'circle')
-// console.log(getSomeShapes)
-
-// var getSomeDates = tableData.filter(datetime => datetime.datetime)
-// console.log(getSomeDates)
-
-var currentTime = new Date ()
-console.log(currentTime)
-
-// YOUR CODE HERE!
 // Check data import
     //   console.log(tableData)
+
 // Reference to the table body
 var tbody = d3.select("tbody");
-
-//Console log each object
-// tableData.forEach(function(ufoSightings){
-//     // console.log(ufoSightings);
-// });
 
 //Append the table rows
 tableData.forEach(function(ufoSightings) {
     var row = tbody.append("tr");
     Object.entries(ufoSightings).forEach(function([key, value]) {
         row.append("td").text(value)
+    });
 });
 
-});
-
-
+//Button Variable
 var button = d3.select('#filter-btn')
 
+//Form Variable
 var form = d3.select('#datetime')
 
+//Listener definition
 button.on("click", run)
 
+//Listener definition
 form.on("submit", run)
 
-// Do not refresh page
 
+//Filter function
 function run(){
-    // d3.event.preventDefault()
+    d3.event.preventDefault() // Do not refresh page
 
-    var inputElement = d3.select('#datetime');
+    //select element for input
+    var inputElement = d3.select('#datetime'); 
 
-    var inputValue = inputElement.property('value');
+    //assign value to input element
+    var inputValue = inputElement.property('value'); 
 
-    var inputDate = Date.parse(inputValue)
-
+    //filter data based on search input value
     var filteredData = tableData.filter(sighting => sighting.datetime == inputValue)
     console.log(filteredData)
 
+    //clear default table data
     var tb = document.getElementById('ufo-table');
         while(tb.rows.length > 1) {
         tb.deleteRow(1);
         }
 
+    //append table with filtered data
         filteredData.forEach(function(filteredSightings) {
         var row = tbody.append("tr");
         Object.entries(filteredSightings).forEach(function([key, value]) {
