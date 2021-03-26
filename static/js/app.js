@@ -1,30 +1,28 @@
 // from data.js
 var tableData = data;
 
-var getSomeCities = tableData.filter(state => state.state === 'ca')
-console.log(getSomeCities)
+// var getSomeCities = tableData.filter(state => state.state === 'ca')
+// console.log(getSomeCities)
 
-var getSomeShapes = tableData.filter(shape => shape.shape == 'circle')
-console.log(getSomeShapes)
+// var getSomeShapes = tableData.filter(shape => shape.shape == 'circle')
+// console.log(getSomeShapes)
 
-var getSomeDates = tableData.filter(datetime => datetime.datetime)
-console.log(getSomeDates)
+// var getSomeDates = tableData.filter(datetime => datetime.datetime)
+// console.log(getSomeDates)
 
 var currentTime = new Date ()
 console.log(currentTime)
 
 // YOUR CODE HERE!
-
-//Check data import
-      // console.log(tableData)
-
-//Reference to the table body
+// Check data import
+    //   console.log(tableData)
+// Reference to the table body
 var tbody = d3.select("tbody");
 
 //Console log each object
-tableData.forEach(function(ufoSightings){
-    // console.log(ufoSightings);
-});
+// tableData.forEach(function(ufoSightings){
+//     // console.log(ufoSightings);
+// });
 
 //Append the table rows
 tableData.forEach(function(ufoSightings) {
@@ -35,35 +33,38 @@ tableData.forEach(function(ufoSightings) {
 
 });
 
+
 var button = d3.select('#filter-btn')
-var form = d3.select('#city')
+
+var form = d3.select('#datetime')
 
 button.on("click", run)
+
 form.on("submit", run)
 
-//Do not refresh page
+// Do not refresh page
+
 function run(){
-    d3.event.preventDefault()
+    // d3.event.preventDefault()
 
     var inputElement = d3.select('#city');
 
-    var value = inputElement.property('value');
-    
-    console.log(value)
+    var inputValue = inputElement.property('value');
 
-    var stringDate = tableData.toString(tableData.datetime)
-
-    var filteredData = tableData.filter(city => city.city == value)
-
+    var filteredData = tableData.filter(city => city.city === inputValue)
     console.log(filteredData)
 
-    console.log(tableData.city)
- 
-    let sightingdate = tableData.filter(function (e) {
-        return e.datetime == 01/01/2010;
-    })
+    var tb = document.getElementById('ufo-table');
+        while(tb.rows.length > 1) {
+        tb.deleteRow(1);
+        }
+
+        filteredData.forEach(function(filteredSightings) {
+        var row = tbody.append("tr");
+        Object.entries(filteredSightings).forEach(function([key, value]) {
+            row.append("td").text(value)
+        });
+    }
+    );
 
 }
-
-
-
