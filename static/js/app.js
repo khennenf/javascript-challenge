@@ -47,11 +47,13 @@ form.on("submit", run)
 function run(){
     // d3.event.preventDefault()
 
-    var inputElement = d3.select('#city');
+    var inputElement = d3.select('#datetime');
 
     var inputValue = inputElement.property('value');
 
-    var filteredData = tableData.filter(city => city.city === inputValue)
+    var inputDate = Date.parse(inputValue)
+
+    var filteredData = tableData.filter(date => datetime.datetime == inputDate)
     console.log(filteredData)
 
     var tb = document.getElementById('ufo-table');
