@@ -53,7 +53,7 @@ function run(){
 
     var inputDate = Date.parse(inputValue)
 
-    var filteredData = tableData.filter(date => datetime.datetime == inputDate)
+    var filteredData = tableData.filter(sighting => sighting.datetime == inputValue)
     console.log(filteredData)
 
     var tb = document.getElementById('ufo-table');
